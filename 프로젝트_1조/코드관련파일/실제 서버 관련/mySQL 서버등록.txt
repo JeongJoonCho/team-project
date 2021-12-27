@@ -1,0 +1,92 @@
+1. putty 접속
+
+2. service mysql status 입력
+-> Active : active (running) 확인 후 ctrl+c 눌러서 빠져나오기
+
+3. mysql workbench 켜기
+
+4. 새 접속 만들기 클릭
+
+5. connection name : ncloud_mysql 입력
+
+6. hostname : IP 주소 붙여넣기
+
+7. Test Connection 클릭
+-> 성공 확인
+
+8. ncloud 홈피 접속
+
+9. ncloud-default-acg
+->  규칙 설정
+-> 0.0.0.0/0 - 3306 - mysql
+
+10. 서버 재시작
+
+11. mysql workbench에서 생성 확인 후 접속
+
+12. mysql_mc / timezone_leap 추가
+
+13. timezone_leap 맨위에 use mysql; 추가
+
+14. 번개 표시 누르고 기다리기
+-> 완료되면 mysql_mc에서 체크
+
+15. cd /etc/mysql/
+
+16. ls
+-> my.cnf 확인
+
+17. cat my.cnf
+
+18. vi my.cnf
+
+19. 최하단으로 커서 이동
+
+20. i
+-> insert mode
+
+21. 최하단에 라인 추가
+->	default-time-zone=Asia/Seoul
+	[client]
+	default-character-set=utf8
+	[mysql]
+	default-character-set=utf8
+	[mysqld]
+	collation-server=utf8_unicode_ci
+	init-connect='SET NAMES utf8'
+	character-set-server=utf8
+
+22. esc
+
+23. :wq
+-> 저장하고 나오기
+
+24. service mysql restart
+
+25. service mysql restart
+-> running 다시 확인
+
+26. mysql -uroot
+
+27. alter user 'root'@'localhost' identified by 'cocoa1234';
+-> 1234 비밀번호
+
+28. create user 'bro'@'%' identified by 'cocoa1234';
+-> bro 아이디
+
+29. grant all privileges on *.* to 'bro'@'%';
+
+30. 종료
+
+31. ncloud 홈피 접속
+-> public IP 신청
+-> Zone : KR-2
+-> 적용서버 : bro-mcsn
+-> 다음 생성 확인
+-> 생성된 IP 주소 49.xx.xxx.xxx 복사
+
+32. cocoa 테이블 만들어서 테스트
+-> pom.xml 디펜던시 추가
+-> jdbc.properties 수정
+
+========================================================
