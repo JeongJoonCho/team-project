@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.coach">
+	<resultMap id="coachResult" type="coachVO">
+		<result property="coachNO" column="coachNO" />
+		<result property="coach" column="coach" />
+		<result property="cField" column="cField" />
+		<result property="tool" column="tool" />
+		<result property="cImg" column="cImg" />
+		<result property="cTitle" column="cTitle" />
+		<result property="basicPrice" column="basicPrice" />
+		<result property="cContents" column="cContents" />
+	</resultMap>
+
+	<!-- 코치 글 추가 -->
+	<insert id="insertNewCoach" parameterType="java.util.Map">
+		<![CDATA[
+		 insert into coachingTBL (coachNO, coach, cField, tool, cImg, cTitle, basicPrice, cContents)
+		 values(#{coachNO}, #{coach}, #{cField}, #{tool}, #{cImg}, #{cTitle}, #{basicPrice}, #{cContents})
+		]]>
+	</insert>
+
+	<!-- 코치 글 넘버링 -->
+	<select id="selectNewCoachNO" resultType="int">
+		<![CDATA[
+			SELECT ifnull(max(coachNO), 0) + 1
+			from coachingTBL
+		]]>
+	</select>
+
+	<!-- 코치 글 조회 -->
+	<!-- 카테고리별 + 정렬순 -->
+	<select id="selectAllCoachesList" resultMap="coachResult">
+		<![CDATA[
+			SELECT *
+			from coachingTBL
+			left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
+			ReviewRate on coachingTBL.coach = ReviewRate.target
+			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
+			${coachOrder}
+			limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+
+	<!-- 코치 글 상세 조회 -->
+	<select id="selectCoach" resultType="coachVO"
+		parameterType="int">
+		<![CDATA[
+			SELECT *
+			from coachingTBL
+			where coachNO = #{coachNO}
+		]]>
+	</select>
+
+	<!-- 코치 글 수정 -->
+	<update id="updateCoach" parameterType="java.util.Map">
+		update coachingTBL
+		set cTitle=#{cTitle},
+		cContents=#{cContents},
+		basicPrice=#{basicPrice}
+		<if test="cField!=''">
+			, cField=#{cField}
+		</if>
+		<if test="tool!=''">
+			, tool=#{tool}
+		</if>
+		<if test="cImg!='' and cImg!=null">
+			, cImg=#{cImg}
+		</if>
+		where coachNO=#{coachNO}
+	</update>
+
+	<!-- 코치 글 삭제 -->
+	<delete id="deleteCoach" parameterType="int">
+    <![CDATA[
+      delete from coachingTBL
+      where coachNO = #{coachNO}
+    ]]>
+	</delete>
+
+	<!-- 코칭 글의 수 -->
+	<select id="countCoach" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT count(*)
+			from coachingTBL
+			left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
+			ReviewRate on coachingTBL.coach = ReviewRate.target
+			where cField like concat(#{cField},"%") and tool like concat(#{tool}, "%")
+			${coachOrder}
+		]]>
+	</select>
+
+</mapper>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.project">
+	<resultMap id="projectResult" type="projectVO">
+		<result property="projectNO" column="projectNO" />
+		<result property="leader" column="leader" />
+		<result property="pImg" column="pImg" />
+		<result property="pTitle" column="pTitle" />
+		<result property="memberCount" column="memberCount" />
+		<result property="pField" column="pField" />
+		<result property="level" column="level" />
+		<result property="pContents" column="pContents" />
+		<result property="map" column="map" />
+		<result property="kakao" column="kakao" />
+	</resultMap>
+
+	<!-- 프로젝트 글 추가 -->
+	<insert id="insertNewProject" parameterType="java.util.Map">
+		<![CDATA[
+			insert into projectTBL
+			values(#{projectNO}, #{leader}, #{pImg}, #{pTitle}, #{memberCount}, #{pField}, #{level}, #{pContents}, #{map}, #{kakao})
+		]]>
+	</insert>
+
+	<!-- 프로젝트 글 넘버링 -->
+	<select id="selectNewProjectNO" resultType="int">
+		<![CDATA[
+			SELECT ifnull(max(projectNO), 0) + 1
+			from projectTBL
+		]]>
+	</select>
+
+	<!-- 프로젝트 글 조회 -->
+	<!-- 카테고리별 + 정렬순 -->
+	<select id="selectAllProjectList" resultMap="projectResult">
+      <![CDATA[
+         select * 
+         from projectTBL
+         left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
+         ReviewRate on projectTBL.leader = ReviewRate.target
+         where pField like concat(#{pField},"%") and level like concat(#{level}, "%")
+         ${projectOrder}
+         limit #{pageStart}, #{perPageNum}
+      ]]>
+	</select>
+
+	<!-- 프로젝트 글 상세 조회 -->
+	<select id="selectById" resultType="projectVO">
+      <![CDATA[
+         select * from projectTBL where leader=#{leader} and projectNO=#{projectNO}
+      ]]>
+	</select>
+
+	<!-- 프로젝트 글 삭제 -->
+	<delete id="deleteProject" parameterType="int">
+    <![CDATA[
+      delete from projectTBL
+      where projectNO=#{projectNO}
+    ]]>
+	</delete>
+
+	<!-- 프로젝트 글 수정 -->
+	<update id="updateProject" parameterType="java.util.Map">
+		update projectTBL
+		set pTitle=#{pTitle},
+		map=#{map},
+		pContents=#{pContents}
+		<if test="pField!=''">
+			, pField=#{pField}
+		</if>
+		<if test="level!=''">
+			, level=#{level}
+		</if>
+		, kakao=#{kakao},
+		memberCount=#{memberCount}
+		<if test="pImg!='' and pImg!=null">
+			, pImg=#{pImg}
+		</if>
+		where projectNO=#{projectNO}
+	</update>
+
+	<!-- 프로젝트 글의 수 -->
+	<select id="countProject" resultType="int" parameterType="int">
+		<![CDATA[
+			select count(*) 
+         	from projectTBL
+	        left outer join (select target, round(ifnull(avg(rate),0),1) as reviewRate from reviewTBL group by target)
+	        ReviewRate on projectTBL.leader = ReviewRate.target
+	        where pField like concat(#{pField},"%") and level like concat(#{level}, "%")
+	        ${projectOrder}
+		]]>
+	</select>
+
+</mapper>
