@@ -243,7 +243,7 @@ public class CoachControllerImpl implements CoachController {
 		ModelAndView mav = new ModelAndView();
 		String url = "/coach/coachInfo";
 		mav.setViewName(url);
-
+		
 		coachVO = coachService.viewCoach(coachNO);
 		mav.addObject("coach", coachVO);
 		return mav;
@@ -275,20 +275,19 @@ public class CoachControllerImpl implements CoachController {
 	public ResponseEntity modCoach(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
+		// coachMap 생성
 		Map<String, Object> coachMap = new HashMap<String, Object>();
+		// jsp에서 받아온 파라메타 값들을 key & value로 저장
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
 			String value = multipartRequest.getParameter(name);
 			coachMap.put(name, value);
 		}
-
-		// 세션 불러오기
-		HttpSession session = multipartRequest.getSession();
-
+		// upload 메소드로 cImg 생성 후 coachMap에 저장
 		String cImg = upload(multipartRequest);
 		coachMap.put("cImg", cImg);
-
+		// 이미지 파일 수정에 사용할 coachNO 와 coach를 불러옴
 		String coachNO = (String) coachMap.get("coachNO");
 		String coach = (String) coachMap.get("coach");
 		String message;
@@ -296,13 +295,15 @@ public class CoachControllerImpl implements CoachController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
+			// 코치 글 수정
 			coachService.modCoach(coachMap);
+			// 코치 글 이미지 파일 변경
 			if (cImg != null && cImg.length() != 0) {
-
+				// 이전 이미지 파일 삭제
 				String originalFileName = (String) coachMap.get("originalFileName");
 				File oldFile = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO + "/" + originalFileName);
 				oldFile.delete();
-
+				// 새로운 이미지 파일 저장
 				File srcFile = new File(COACH_IMAGE_REPO + "/" + "temp" + "/" + cImg);
 				File destDir = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
@@ -339,7 +340,9 @@ public class CoachControllerImpl implements CoachController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
+			// 코치 글 삭제
 			coachService.removeCoach(coachNO);
+			// 코치 글 이미지 파일 삭제
 			File destDir = new File(COACH_IMAGE_REPO + "/" + coach + "/" + coachNO);
 			FileUtils.deleteDirectory(destDir);
 

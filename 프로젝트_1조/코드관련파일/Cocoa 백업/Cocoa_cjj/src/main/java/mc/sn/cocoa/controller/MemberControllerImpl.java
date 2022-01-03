@@ -124,9 +124,12 @@ public class MemberControllerImpl implements MemberController {
 	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
+		// POST로 받아온 정보 "member"로 데이터를 불러와 memberVO로 저장 
 		MemberVO memberVO = memberService.login(member);
+		// 로그인 이전 화면의 값을 가져오기위한 view
 		String view = request.getParameter("view");
 		if (memberVO != null) {
+			//session에 member와 isLogOn을 저장
 			HttpSession session = request.getSession();
 			session.setAttribute("member", memberVO);
 			session.setAttribute("isLogOn", true);
@@ -142,6 +145,7 @@ public class MemberControllerImpl implements MemberController {
 	@Override
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
+		// session에 member와 isLogOn을 제거
 		HttpSession session = request.getSession();
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
@@ -150,7 +154,7 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 
-	// 아이디 체크
+	// 회원가입 시 아이디 체크
 	@ResponseBody
 	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
 	public int idChk(MemberVO vo) throws Exception {
@@ -291,12 +295,14 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	// 회원 탈퇴
+	// 프로필 이미지 삭제 로직 추가해야함******
 	@ResponseBody
 	@RequestMapping(value = "/dropMember", method = RequestMethod.GET)
 	public ResponseEntity dropMember(@RequestParam("id") String id, HttpServletRequest request,
 			HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
+		// 회원 정보 삭제
 		result = memberService.dropMember(id);
 		String message;
 		ResponseEntity resEnt = null;
