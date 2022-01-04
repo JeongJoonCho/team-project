@@ -67,6 +67,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	// 타인 프로필 화면 이동
+	@Override
 	@RequestMapping(value = "/view_profileInfo", method = RequestMethod.GET)
 	public ModelAndView view_proFileInfo(@RequestParam("profileId") String id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -155,6 +156,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	// 회원가입 시 아이디 체크
+	@Override
 	@ResponseBody
 	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
 	public int idChk(MemberVO vo) throws Exception {
@@ -213,6 +215,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	// 프로필 수정
+	@Override
 	@ResponseBody
 	@RequestMapping(value = "/modProfile", method = RequestMethod.POST)
 	public ResponseEntity modProfile(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
@@ -266,6 +269,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	// 회원정보 수정
+	@Override
 	@ResponseBody
 	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
 	public ResponseEntity updateMember(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request,
@@ -295,13 +299,15 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	// 회원 탈퇴
-	// 프로필 이미지 삭제 로직 추가해야함******
+	@Override
 	@ResponseBody
 	@RequestMapping(value = "/dropMember", method = RequestMethod.GET)
 	public ResponseEntity dropMember(@RequestParam("id") String id, HttpServletRequest request,
-			HttpServletResponse response) throws UnsupportedEncodingException {
+			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
+		MemberVO vo = memberService.searchMember(id);
+		String proImg = vo.getproImg();
 		// 회원 정보 삭제
 		result = memberService.dropMember(id);
 		String message;
@@ -309,6 +315,9 @@ public class MemberControllerImpl implements MemberController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		if (result != 0) {
+			// 프로필 이미지 파일 삭제
+			File destDir = new File(profile_IMAGE_REPO + "/" + id + "/" + proImg);
+			FileUtils.deleteDirectory(destDir);
 			HttpSession session = request.getSession();
 			session.removeAttribute("member");
 			session.removeAttribute("isLogOn"); // 삭제하고 isLogOn과 member를 세션에서 삭제
