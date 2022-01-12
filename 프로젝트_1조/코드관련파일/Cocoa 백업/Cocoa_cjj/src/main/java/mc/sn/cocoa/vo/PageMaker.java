@@ -1,5 +1,5 @@
 package mc.sn.cocoa.vo;
-
+// 페이징을 위한 vo
 public class PageMaker {
 
 	private Criteria cri;

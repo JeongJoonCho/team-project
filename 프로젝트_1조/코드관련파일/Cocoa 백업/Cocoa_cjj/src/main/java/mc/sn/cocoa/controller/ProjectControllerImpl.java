@@ -371,7 +371,7 @@ public class ProjectControllerImpl implements ProjectController {
 		return resEnt;
 	}
 
-	// 맵 정보 추가
+	// 맵 정보 추가 service를 통해 naver ai 사용
 	@Override
 	@ResponseBody
 	@RequestMapping(value = "/map", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")

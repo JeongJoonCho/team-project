@@ -33,6 +33,7 @@
 
 	<!-- 코치 글 조회 -->
 	<!-- 카테고리별 + 정렬순 -->
+	<!-- outer join 사용 -->
 	<select id="selectAllCoachesList" resultMap="coachResult">
 		<![CDATA[
 			SELECT *
@@ -82,6 +83,7 @@
 	</delete>
 
 	<!-- 코칭 글의 수 -->
+	<!-- outer join 사용 -->
 	<select id="countCoach" resultType="int" parameterType="int">
 		<![CDATA[
 			SELECT count(*)

@@ -166,6 +166,7 @@ public class MemberControllerImpl implements MemberController {
 	}
 
 	// 파일 업로드 (프로필사진)
+	// private 메소드
 	private String upload(MultipartHttpServletRequest multipartRequest) throws Exception {
 
 		String proImg = null;
@@ -221,18 +222,20 @@ public class MemberControllerImpl implements MemberController {
 	public ResponseEntity modProfile(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
+		// profileMap 설정
 		Map<String, Object> profileMap = new HashMap<String, Object>();
+		// 파라메타 key 값들을 설정
 		Enumeration enu = multipartRequest.getParameterNames();
+		// 파라메타 key & value를 profileMap에 저장
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
 			String value = multipartRequest.getParameter(name);
 			profileMap.put(name, value);
 		}
-		HttpSession session = multipartRequest.getSession();
-
+		// upload 메소드로 proImg 값 가져오고 profileMap에 저장
 		String proImg = upload(multipartRequest);
 		profileMap.put("proImg", proImg);
-
+		// 저장경로에 사용할 id 값 설정
 		String id = (String) profileMap.get("id");
 		String message;
 		ResponseEntity resEnt = null;
@@ -241,10 +244,11 @@ public class MemberControllerImpl implements MemberController {
 		try {
 			memberService.modProfile(profileMap);
 			if (proImg != null && proImg.length() != 0) {
+				// 이미지를 변경했다면 이전 파일 삭제
 				String originalFileName = (String) profileMap.get("originalFileName");
 				File oldFile = new File(profile_IMAGE_REPO + "/" + id + "/" + originalFileName);
 				oldFile.delete();
-
+				// 이미지를 변경했다면 새롭게 파일경로 설정
 				File srcFile = new File(profile_IMAGE_REPO + "/" + "temp" + "/" + proImg);
 				File destDir = new File(profile_IMAGE_REPO + "/" + id);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);

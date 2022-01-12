@@ -1,19 +1,19 @@
 package mc.sn.cocoa.vo;
-
+// 페이징을 위한 vo
 public class Criteria {
-
+	
 	private int page; // 현재 페이지 번호
 	private int perPageNum; // 한 페이지에 게시할 글의 수
-	private String cField = "cField";
-	private String tool = "tool";
-	private String pField = "pField";
-	private String level = "level";
+	private String cField = "cField"; // default 값 설정
+	private String tool = "tool"; // default 값 설정
+	private String pField = "pField"; // default 값 설정
+	private String level = "level"; // default 값 설정
 	private String reqId;
 	private String resId;
-	private String status = "status";
+	private String status = "status"; // default 값 설정
 	private String target;
-	private String coachOrder = "order by reviewRate desc";
-	private String projectOrder = "order by reviewRate desc";
+	private String coachOrder = "order by reviewRate desc"; // default 값 설정
+	private String projectOrder = "order by reviewRate desc"; // default 값 설정
 
 	// 특정 페이지의 게시글 시작 번호, 게시글 시작 행 번호
 	// 현재 페이지의 게시글 시작 번호 = (현재 페이지 번호 - 1) * 페이지 당 게시할 글의 수
