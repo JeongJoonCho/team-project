@@ -229,7 +229,9 @@ public class ProjectControllerImpl implements ProjectController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
+			// 프로젝트 글 삭제
 			projectService.removeProject(projectNO);
+			// 프로젝트 글 이미지 파일 경로 삭제
 			File destDir = new File(project_IMAGE_REPO + "/" + id + "/" + projectNO);
 			FileUtils.deleteDirectory(destDir);
 

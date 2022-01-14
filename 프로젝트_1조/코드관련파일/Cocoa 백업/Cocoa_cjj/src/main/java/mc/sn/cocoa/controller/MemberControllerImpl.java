@@ -151,11 +151,12 @@ public class MemberControllerImpl implements MemberController {
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
 		ModelAndView mav = new ModelAndView();
+		// 로그아웃 시 홈화면으로 이동
 		mav.setViewName("redirect:/");
 		return mav;
 	}
 
-	// 회원가입 시 아이디 체크
+	// 회원가입 시 아이디 중복 체크
 	@Override
 	@ResponseBody
 	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
@@ -280,18 +281,22 @@ public class MemberControllerImpl implements MemberController {
 			HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
+		// 회원정보 수정
 		result = memberService.modifyMember(memberVO);
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		// 수정 성공 시
 		if (result != 0) {
 			message = "<script>";
 			message += " alert('수정이 완료되었습니다.');";
 			message += " location.href='" + request.getContextPath() + "/view_memberInfo'; ";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-		} else {
+		} 
+		// 수정 실패시 
+		else {
 
 			message = " <script>";
 			message += " alert('오류가 발생했습니다. 다시 시도해주세요.');');";
@@ -310,7 +315,9 @@ public class MemberControllerImpl implements MemberController {
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
+		// 회원 정보 search 하고
 		MemberVO vo = memberService.searchMember(id);
+		// search 한 것을 바탕으로 proImg 값 가져오기
 		String proImg = vo.getproImg();
 		// 회원 정보 삭제
 		result = memberService.dropMember(id);

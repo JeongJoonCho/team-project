@@ -46,6 +46,7 @@ public class RequestControllerImpl implements RequestController {
 	@Autowired
 	private RequestService requestService;
 
+	// 요청 글 작성 화면 이동
 	// coachInfo.jsp에서 요청서 작성 선택시 실행
 	// RequestParam으로 쿼리스트링으로 받아온 "coachId"를 res로 저장
 	@Override
@@ -156,8 +157,8 @@ public class RequestControllerImpl implements RequestController {
 	public ModelAndView view_sendReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
+		// 세션으로부터 로그인 id 값 가져오기
 		HttpSession session = request.getSession();
-
 		MemberVO vo = (MemberVO) session.getAttribute("member");
 		String id = vo.getId();
 
@@ -192,8 +193,8 @@ public class RequestControllerImpl implements RequestController {
 	public ModelAndView view_receiveReq(HttpServletRequest request, HttpServletResponse response, Criteria cri)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
+		// 세션으로부터 id 값 가져오기
 		HttpSession session = request.getSession();
-
 		MemberVO vo = (MemberVO) session.getAttribute("member");
 		String id = vo.getId();
 
@@ -276,7 +277,9 @@ public class RequestControllerImpl implements RequestController {
 	public ResponseEntity modRequest(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception {
 		multipartRequest.setCharacterEncoding("utf-8");
+		// requestMap 설정
 		Map<String, Object> requestMap = new HashMap<String, Object>();
+		// 파라메타 key & value 를 requestMap에 저장
 		Enumeration enu = multipartRequest.getParameterNames();
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
@@ -284,21 +287,27 @@ public class RequestControllerImpl implements RequestController {
 			requestMap.put(name, value);
 		}
 
+		// upload 메소드로부터 rImg 값을 가져와서 requestMap에 저장
 		String rImg = upload(multipartRequest);
 		requestMap.put("rImg", rImg);
-
+		
+		// 이미지 파일 경로에 사용할 reqNO 가져오기
 		String reqNO = (String) requestMap.get("reqNO");
 		String message;
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
+			// 요청글 수정 실행
 			requestService.modRequest(requestMap);
+			// 요청글 이미지 파일 변경시 if문
 			if (rImg != null && rImg.length() != 0) {
+				// 이전 파일 삭제
 				String originalFileName = (String) requestMap.get("originalFileName");
 				File oldFile = new File(request_IMAGE_REPO + "/" + reqNO + "/" + originalFileName);
 				oldFile.delete();
-
+				
+				// 새로운 파일 저장
 				File srcFile = new File(request_IMAGE_REPO + "/" + "temp" + "/" + rImg);
 				File destDir = new File(request_IMAGE_REPO + "/" + reqNO);
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);
@@ -336,7 +345,9 @@ public class RequestControllerImpl implements RequestController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
+			// 요청글 삭제 실행
 			requestService.removeRequest(reqNO);
+			// 이미지 파일 경로 삭제
 			File destDir = new File(request_IMAGE_REPO + "/" + reqNO);
 			FileUtils.deleteDirectory(destDir);
 
@@ -418,6 +429,7 @@ public class RequestControllerImpl implements RequestController {
 			HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		int result = 0;
+		// 거절사유 입력 실행
 		result = requestService.submitReason(requestVO);
 		String message;
 		int reqNO = requestVO.getReqNO();
@@ -425,7 +437,6 @@ public class RequestControllerImpl implements RequestController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		if (result != 0) {
-			HttpSession session = request.getSession();
 			message = "<script>";
 			message += " alert('거절사유를 전송하였습니다.');";
 			message += " location.href='" + request.getContextPath() + "/view_receiveReq'; ";

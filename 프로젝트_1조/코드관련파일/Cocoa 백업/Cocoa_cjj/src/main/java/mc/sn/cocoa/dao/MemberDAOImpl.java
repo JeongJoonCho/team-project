@@ -53,7 +53,9 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int deleteMember(String id) {
 		int result = 0;
+		// 삭제 실행
 		result = sqlSession.delete("mapper.member.deleteMember", id);
+		// 삭제 후 해당 id 다시 못 쓰도록 id 저장
 		sqlSession.insert("mapper.member.preserveId", id);
 		return result;
 	}

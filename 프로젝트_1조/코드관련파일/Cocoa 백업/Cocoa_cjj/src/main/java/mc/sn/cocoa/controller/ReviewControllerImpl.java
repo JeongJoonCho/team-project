@@ -40,8 +40,11 @@ public class ReviewControllerImpl implements ReviewController {
 			@RequestParam("reqNO") int reqNO, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		String url = "/review/coachRateForm";
+		// 요청글 넘버
 		mav.addObject("reqNO", reqNO);
+		// 리뷰가 남겨지는 회원
 		mav.addObject("target", target);
+		// 리뷰를 남기는 회원
 		mav.addObject("writer", writer);
 		mav.setViewName(url);
 		// reqWriteForm.jsp를 열었을 때 res object도 같이 보내짐

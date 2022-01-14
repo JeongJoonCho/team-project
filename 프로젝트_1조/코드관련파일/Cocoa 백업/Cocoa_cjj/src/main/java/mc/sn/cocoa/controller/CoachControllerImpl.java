@@ -236,7 +236,7 @@ public class CoachControllerImpl implements CoachController {
 		out.close();
 	}
 
-	// 전달된 글 번호를 이용해서 해당 글 정보 조회
+	// 전달된 글 번호를 이용해서 해당 글 정보 조회, 타인 프로필 조회
 	@RequestMapping(value = "/view_coachInfo", method = RequestMethod.GET)
 	public ModelAndView coachInfo(@RequestParam("coachNO") int coachNO, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
