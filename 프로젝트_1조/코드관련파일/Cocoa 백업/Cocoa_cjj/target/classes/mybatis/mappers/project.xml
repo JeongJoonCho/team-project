@@ -34,6 +34,7 @@
 
 	<!-- 프로젝트 글 조회 -->
 	<!-- 카테고리별 + 정렬순 -->
+	<!-- left outer join 으로 reviewTBL을 가져와서 projectTBL에 적용 -->
 	<select id="selectAllProjectList" resultMap="projectResult">
       <![CDATA[
          select * 
@@ -82,6 +83,7 @@
 	</update>
 
 	<!-- 프로젝트 글의 수 -->
+	<!-- 페이징을 위한 select문 -->
 	<select id="countProject" resultType="int" parameterType="int">
 		<![CDATA[
 			select count(*) 

@@ -66,6 +66,7 @@
 	</delete>
 
 	<!-- 리뷰 글의 수 -->
+	<!-- 페이징을 위한 select문 -->
 	<select id="countReview" resultType="int" parameterType="int">
 		<![CDATA[
 			SELECT count(*)

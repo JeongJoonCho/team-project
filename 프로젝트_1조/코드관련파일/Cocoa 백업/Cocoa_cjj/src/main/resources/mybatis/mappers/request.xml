@@ -107,6 +107,7 @@
 	</select>
 
 	<!-- 받은 요청 글의 수 -->
+	<!-- 페이징을 위한 select문 -->
 	<select id="countReceiveRequest" resultType="int"
 		parameterType="int">
 		<![CDATA[

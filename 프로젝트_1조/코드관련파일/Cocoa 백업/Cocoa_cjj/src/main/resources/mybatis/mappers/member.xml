@@ -72,6 +72,7 @@
 	</delete>
 
 	<!-- 회원 탈퇴 후 아이디만 보존 -->
+	<!-- 탈퇴한 아이디로 insert 하고, 비번 이름 폰 공란으로 두기-> 로그인 시 공란이 있으면 로그인 실행 불가 -->
 	<insert id="preserveId" parameterType="String">
 		<![CDATA[
 		 insert into memberTBL(id, pwd, name, phone)
