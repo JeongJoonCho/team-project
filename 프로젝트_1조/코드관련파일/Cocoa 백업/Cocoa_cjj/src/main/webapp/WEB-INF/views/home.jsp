@@ -37,9 +37,8 @@
 	<section id="categories" style="min-height: 46.4vh;">
 		<div class="container px-5 my-5">
 			<div class="row gx-5 justify-content-center">
-
-				<div class="mb-5 mx-3 px-2 py-2"
-					style="background-color: #E0FFFF; color: black; width: 30%; height: 100%; border: 1px solid grey; border-radius: 20px; text-align: center;">
+				<div class="mb-5 mx-3 px-2 py-2" style="background-color: #E0FFFF;
+				 color: black; width: 30%; height: 100%; border: 1px solid grey; border-radius: 20px; text-align: center;">
 					<div class="mb-3">
 						<i class="bi bi-laptop" style='font-size: 50px;'></i>
 					</div>
@@ -50,13 +49,14 @@
 					</p>
 					<a class="text-decoration-none" href="/cocoa/view_projectCate"
 						style="color: black;" onmouseover="this.style.color='#FF4500'"
-						onmouseout="this.style.color='black'"> <b>입 장</b> <i
-						class="bi bi-arrow-right"></i>
+						onmouseout="this.style.color='black'"> 
+						<b>입 장</b> 
+						<i class="bi bi-arrow-right"></i>
 					</a>
 				</div>
 
-				<div class="mb-5 mx-3 px-2 py-2 round"
-					style="background-color: #E0FFFF; color: black; width: 30%; height: 100%; border: 1px solid grey; border-radius: 20px; text-align: center;">
+				<div class="mb-5 mx-3 px-2 py-2 round" style="background-color: #E0FFFF;
+				 color: black; width: 30%; height: 100%; border: 1px solid grey; border-radius: 20px; text-align: center;">
 					<div class="mb-3">
 						<i class="bi bi-person-video3" style='font-size: 50px;'></i>
 					</div>
@@ -67,8 +67,9 @@
 					</p>
 					<a class="text-decoration-none" href="/cocoa/view_coachCate"
 						style="color: black;" onmouseover="this.style.color='#FF4500'"
-						onmouseout="this.style.color='black'"> <b>입 장</b> <i
-						class="bi bi-arrow-right"></i>
+						onmouseout="this.style.color='black'"> 
+						<b>입 장</b>
+						<i class="bi bi-arrow-right"></i>
 					</a>
 				</div>
 			</div>
@@ -76,8 +77,7 @@
 	</section>
 
 	<!-- 하단바 -->
-	<footer class="py-5 bg-dark mb-0"
-		style="background-color: #212429; color: white;">
+	<footer class="py-5 bg-dark mb-0" style="background-color: #212429; color: white;">
 		<p class="m-0 text-center text-white">Copyright &copy; CoCoa 2021</p>
 	</footer>
 

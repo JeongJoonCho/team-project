@@ -24,21 +24,18 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<!-- 카테고리 구간 -->
-	<header class="py-5"
-		style="background-color: #663333; text-align: center;">
+	<header class="py-5" style="background-color: #663333; text-align: center;">
 		<div class="row">
-
 			<!-- 분류 -->
 			<div class="col-sm-4">
 				<div id="class" class="d gap-3">
 					<div style="color: #CFFFE5; font-size: 25px;">분류</div>
-					<br> <input id="project" type="button"
-						class="btn btn-primary btn-lg px-4"
+					<br> 
+					<input id="project" type="button" class="btn btn-primary btn-lg px-4"
 						onClick="location.href='/cocoa/view_projectCate'" value="Project">
-					<br> <br> <input id="project" type="button"
-						class="btn btn-primary btn-lg px-4"
+					<br> <br> 
+					<input id="project" type="button" class="btn btn-primary btn-lg px-4"
 						onClick="location.href='/cocoa/view_coachCate'" value="Coaching">
-
 				</div>
 			</div>
 
@@ -46,16 +43,15 @@
 			<div class="col-sm-4">
 				<div id="cFields" class="d gap-3">
 					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">영역</div>
-					<br> <input id="Web" type="button"
-						class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate?pField=pField1'"
-						value="Web"> <br> <br> <input id="Mobile App"
-						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate?pField=pField2'"
-						value="Mobile App"> <br> <br> <input
-						id="Embedded" type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate?pField=pField3'"
-						value="Embedded">
+					<br> 
+					<input id="Web" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_projectCate?pField=pField1'" value="Web"> 
+					<br> <br> 
+					<input id="Mobile App" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_projectCate?pField=pField2'" value="Mobile App"> 
+					<br> <br> 
+					<input id="Embedded" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_projectCate?pField=pField3'" value="Embedded">
 				</div>
 			</div>
 
@@ -63,16 +59,15 @@
 			<div class="col-sm-4">
 				<div id="levels" class="d gap-3">
 					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">등급</div>
-					<br> <input id="Basic" type="button"
-						class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField}&level=level1'"
-						value="Basic" /><br> <br> <input id="Intermediate"
-						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField}&level=level2'"
-						value="Intemediate" /><br> <br> <input id="Advanced"
-						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField}&level=level3'"
-						value="Advanced" />
+					<br> 
+					<input id="Basic" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField}&level=level1'" value="Basic" />
+					<br> <br> 
+					<input id="Intermediate" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField}&level=level2'" value="Intemediate" />
+					<br> <br> 
+					<input id="Advanced" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_projectCate?pField=${cri.pField}&level=level3'" value="Advanced" />
 				</div>
 			</div>
 
@@ -119,11 +114,11 @@
 				<table style="float: right;">
 					<tr>
 						<td>
-							<!-- 글 주제별 이동 --> <!-- 로그인 여부에따라 숨김 / 표시 --> <c:choose>
+							<!-- 글 주제별 이동 --> <!-- 로그인 여부에따라 숨김 / 표시 --> 
+							<c:choose>
 								<c:when test="${isLogOn == true && member != null}">
 									<a id="cwrite_btn" class="btn btn-primary px-auto me-sm-3"
-										href="/cocoa/view_projectWrite" style="float: right">프로젝트
-										모집</a>
+										href="/cocoa/view_projectWrite" style="float: right">프로젝트 모집</a>
 									<br>
 									<br>
 								</c:when>
@@ -132,8 +127,8 @@
 					</tr>
 					<tr>
 						<td style="vertical-align: middle;">
-							<!-- 정렬 버튼 --> <select class="me-sm-3 py-auto"
-							style="float: right; text-align: center; width: auto;"
+							<!-- 정렬 버튼 --> 
+							<select class="me-sm-3 py-auto" style="float: right; text-align: center; width: auto;"
 							id="projectOrder" onchange="selChange()">
 								<option value="order by reviewRate desc"
 									<c:if test="${cri.projectOrder == 'order by reviewRate desc' }">selected</c:if>>평점높은순</option>
@@ -144,8 +139,7 @@
 								<c:choose>
 									<c:when test="${isLogOn == true && member != null}">
 										<option value="and leader like"
-											<c:if test="${cri.projectOrder == 'and leader like' }">selected</c:if>>내가
-											쓴 글</option>
+											<c:if test="${cri.projectOrder == 'and leader like' }">selected</c:if>>내가 쓴 글</option>
 									</c:when>
 								</c:choose>
 						</select><br> <br>
@@ -155,21 +149,18 @@
 			</div>
 
 			<!-- 생성된 코칭 카탈로그 표시 -->
-			<div
-				class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<div class="row gx-5 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
 				<!-- 반복문 시작 컨트롤러에서 addObject한 projectList를 가져와서 project라고 저장 -->
 				<c:forEach var="project" items="${projectList}">
 
 					<!-- 카탈로그 틀 -->
-					<div class="col mb-5"
-						style="padding-left: 30px; padding-right: 30px;">
-						<div class="card h-100"
-							style="width: 110%; border: 1px solid black;">
+					<div class="col mb-5" style="padding-left: 30px; padding-right: 30px;">
+						<div class="card h-100" style="width: 110%; border: 1px solid black;">
 
 							<!-- 개발툴 표시 -->
-							<div class="badge bg-dark text-white position-absolute"
-								style="top: 0.5rem; right: 0.5rem; background-color: black;">
+							<div class="badge bg-dark text-white position-absolute" 
+							style="top: 0.5rem; right: 0.5rem; background-color: black;">
 								<c:choose>
 									<c:when test="${project.level == 'level1'}">Basic</c:when>
 									<c:when test="${project.level == 'level2'}">Intermediate</c:when>
@@ -178,8 +169,7 @@
 							</div>
 
 							<!-- 간판 이미지 (src=경로) thumbnails로 보내면서 쿼리스트링을 사용 -->
-							<img class="card-img-top" alt="" height=200
-								onerror=" this.src='resources/image/onerror.png'"
+							<img class="card-img-top" alt="" height=200 onerror=" this.src='resources/image/onerror.png'"
 								src="${contextPath}/pthumbnails?leader=${project.leader}&pImg=${project.pImg}&projectNO=${project.projectNO}" />
 
 							<!-- 간판이미지 아래 정보 -->
@@ -201,13 +191,11 @@
 										</div> <!-- 평점 평균 (없을시 0.0) -->
 										<div style="font-size: 13px; float: right;">
 											<c:if test="${reAvg[project.leader] eq null}">
-												<b
-													style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+												<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
 													★&nbsp;</b>
 												<b>0.0</b>&nbsp;|&nbsp;</c:if>
 											<c:if test="${reAvg[project.leader] ne null}">
-												<b
-													style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+												<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
 													★&nbsp;</b>
 												<b>${reAvg[project.leader]}</b>&nbsp;|&nbsp;</c:if>
 										</div>
@@ -218,8 +206,7 @@
 									<br>
 
 									<!-- 인원수 -->
-									<b style="font-size: 15px; color: #333333; float: right;">${project.memberCount}명
-										모집중</b>
+									<b style="font-size: 15px; color: #333333; float: right;">${project.memberCount}명 모집중</b>
 								</div>
 							</div>
 
@@ -227,9 +214,8 @@
 							<div class="card-footer pt-2 border-top-0"
 								style="background-color: #FFCCCC;">
 								<div class="text-center">
-									<a class="btn btn-outline-dark mt-auto"
-										href="${contextPath}/view_projectInfo?id=${project.leader}&projectNO=${project.projectNO}">Get
-										in</a>
+									<a class="btn btn-outline-dark mt-auto" href="${contextPath}/view_projectInfo?id=${project.leader}&projectNO=${project.projectNO}">
+									Get in</a>
 								</div>
 							</div>
 						</div>
@@ -239,8 +225,7 @@
 				<!-- project 반복문 끝 -->
 			</div>
 			<!-- 쪽 번호 구간 -->
-			<div class="pb-3"
-				style="text-align: center; font-size: 30px; width: 100%;">
+			<div class="pb-3" style="text-align: center; font-size: 30px; width: 100%;">
 
 				<c:if test="${pageMaker.prev }">
 					<a style="text-decoration: none; color: black; font-size: 15pt;"
