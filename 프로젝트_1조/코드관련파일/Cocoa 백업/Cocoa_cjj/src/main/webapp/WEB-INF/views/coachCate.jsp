@@ -24,19 +24,19 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<!-- 카테고리 구간 -->
-	<header class="py-5"
-		style="background-color: #663333; text-align: center;">
+	<header class="py-5" style="background-color: #663333; text-align: center;">
 		<div class="row">
 
 			<!-- 분류 -->
 			<div class="col-sm-4">
 				<div id="class" class="d gap-3">
 					<div style="color: #CFFFE5; font-size: 25px;">분류</div>
-					<br> <input id="project" type="button"
-						class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_projectCate'" value="Project"><br>
-					<br> <input id="coaching" type="button"
-						class="btn btn-primary btn-lg px-4"
+					<br> 
+					<input id="project" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_projectCate'" value="Project">
+					<br>
+					<br> 
+					<input id="coaching" type="button" class="btn btn-primary btn-lg px-4"
 						onClick="location.href='/cocoa/view_coachCate'" value="Coaching">
 				</div>
 			</div>
@@ -49,16 +49,15 @@
 				<div id="cFields" class="d gap-3">
 					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">영역
 					</div>
-					<br> <input id="Web" type="button"
-						class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField1'"
-						value="Web"> <br> <br> <input id="Mobile App"
-						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField2'"
-						value="Mobile App"> <br> <br> <input
-						id="Embedded" type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?cField=cField3'"
-						value="Embedded">
+					<br> 
+					<input id="Web" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField1'" value="Web"> 
+					<br> <br> 
+					<input id="Mobile App" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField2'" value="Mobile App"> 
+					<br> <br> 
+					<input id="Embedded" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=cField3'" value="Embedded">
 				</div>
 			</div>
 
@@ -66,25 +65,21 @@
 			<div class="col-sm-4">
 				<div id="tools" class="d gap-3">
 					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">개발툴</div>
-					<br> <input id="Spring" type="button"
-						class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool1'"
-						value="Spring" />&nbsp;&nbsp;<input id="Django" type="button"
-						class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool2'"
-						value="Django" /><br> <br> <input id="AndroidStudio"
-						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool3'"
-						value="Android Studio" />&nbsp;&nbsp;<input id="Xcode"
-						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool4'"
-						value="Xcode" /><br> <br> <input id="Arduino"
-						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool5'"
-						value="Arduino" />&nbsp;&nbsp;<input id="RaspberryPi"
-						type="button" class="btn btn-primary btn-lg px-4"
-						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool6'"
-						value="Rasberry Pi" />
+					<br> 
+					<input id="Spring" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool1'" value="Spring" />&nbsp;&nbsp;
+					<input id="Django" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool2'" value="Django" />
+					<br> <br> 
+					<input id="AndroidStudio" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool3'" value="Android Studio" />&nbsp;&nbsp;
+					<input id="Xcode" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool4'" value="Xcode" />
+					<br> <br> 
+					<input id="Arduino" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool5'" value="Arduino" />&nbsp;&nbsp;
+					<input id="RaspberryPi" type="button" class="btn btn-primary btn-lg px-4"
+						onClick="location.href='/cocoa/view_coachCate?cField=${cri.cField}&tool=tool6'" value="Rasberry Pi" />
 				</div>
 			</div>
 
@@ -133,7 +128,8 @@
 				<table style="float: right;">
 					<tr>
 						<td>
-							<!-- 글 분류별 이동 --> <!-- 로그인 여부에따라 숨김 / 표시 --> <c:choose>
+							<!-- 글 분류별 이동 --> <!-- 로그인 여부에따라 숨김 / 표시 --> 
+							<c:choose>
 								<c:when test="${isLogOn == true && member != null}">
 									<a id="cwrite_btn" class="btn btn-primary px-auto me-sm-3"
 										href="/cocoa/view_coachWrite" style="float: right">코칭 등록</a>
@@ -145,8 +141,8 @@
 					</tr>
 					<tr>
 						<td style="vertical-align: middle;">
-							<!-- 정렬 버튼 --> <select class="me-sm-3"
-							style="float: right; text-align: center; width: auto;"
+							<!-- 정렬 버튼 --> 
+							<select class="me-sm-3" style="float: right; text-align: center; width: auto;"
 							id="coachOrder" onchange="selChange()">
 								<option value="order by reviewRate desc"
 									<c:if test="${cri.coachOrder == 'order by reviewRate desc' }">selected</c:if>>평점높은순</option>
@@ -161,11 +157,12 @@
 								<c:choose>
 									<c:when test="${isLogOn == true && member != null}">
 										<option value="and coach like"
-											<c:if test="${cri.coachOrder.contains('and coach like') }">selected</c:if>>내가
-											쓴 글</option>
+											<c:if test="${cri.coachOrder.contains('and coach like') }">selected</c:if>>
+											내가 쓴 글</option>
 									</c:when>
 								</c:choose>
-						</select><br> <br>
+						</select>
+						<br> <br>
 						</td>
 					</tr>
 				</table>
@@ -178,10 +175,8 @@
 				<!-- 반복문 시작 컨트롤러에서 addObject한 coachList를 가져와서 coach라고 저장 -->
 				<c:forEach var="coach" items="${coachesList}">
 
-					<div class="col mb-5"
-						style="padding-left: 30px; padding-right: 30px;">
-						<div class="card h-100"
-							style="width: 110%; border: 1px solid black;">
+					<div class="col mb-5" style="padding-left: 30px; padding-right: 30px;">
+						<div class="card h-100" style="width: 110%; border: 1px solid black;">
 
 							<!-- 개발툴 표시 -->
 							<div class="badge bg-dark text-white position-absolute"
@@ -197,8 +192,7 @@
 							</div>
 
 							<!-- 간판 이미지 (src=경로) thumbnails로 보내면서 쿼리스트링을 사용 -->
-							<img class="card-img-top" alt="" height=200
-								onerror=" this.src='resources/image/onerror.png'"
+							<img class="card-img-top" alt="" height=200 onerror=" this.src='resources/image/onerror.png'"
 								src="${contextPath}/cthumbnails?coach=${coach.coach}&cImg=${coach.cImg}&coachNO=${coach.coachNO}" />
 
 							<!-- 간판이미지 아래 정보 -->
@@ -220,13 +214,11 @@
 										</div> <!-- 평점 평균 (없을시 0.0) -->
 										<div style="font-size: 13px; float: right;">
 											<c:if test="${reAvg[coach.coach] eq null}">
-												<b
-													style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+												<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
 													★&nbsp;</b>
 												<b>0.0</b>&nbsp;|&nbsp;</c:if>
 											<c:if test="${reAvg[coach.coach] ne null}">
-												<b
-													style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+												<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
 													★&nbsp;</b>
 												<b>${reAvg[coach.coach]}</b>&nbsp;|&nbsp;</c:if>
 										</div>
@@ -237,18 +229,17 @@
 									<br>
 
 									<!-- 기본 요금 -->
-									<b style="font-size: 15px; color: #333333; float: right;">${coach.basicPrice}
-										원</b>
+									<b style="font-size: 15px; color: #333333; float: right;">
+									${coach.basicPrice} 원</b>
 								</div>
 							</div>
 
 							<!-- coachInfo 이동 -->
-							<div class="card-footer border-top-0"
-								style="background-color: #FFCCCC;">
+							<div class="card-footer border-top-0" style="background-color: #FFCCCC;">
 								<div class="text-center">
 									<a class="btn btn-outline-dark mt-auto"
-										href="${contextPath}/view_coachInfo?coachNO=${coach.coachNO}">Get
-										in</a>
+										href="${contextPath}/view_coachInfo?coachNO=${coach.coachNO}">
+										Get in</a>
 								</div>
 							</div>
 						</div>
@@ -258,16 +249,14 @@
 			</div>
 
 			<!-- 쪽 번호 구간 -->
-			<div class="pb-3"
-				style="text-align: center; font-size: 30px; width: 100%;">
+			<div class="pb-3" style="text-align: center; font-size: 30px; width: 100%;">
 
 				<c:if test="${pageMaker.prev }">
 					<a style="text-decoration: none; color: black; font-size: 15pt;"
 						href='<c:url value="/view_coachCate?cField=${cri.cField }&tool=${cri.tool }&coachOrder=${cri.coachOrder}&page=${pageMaker.startPage-1 }"/>'>이전</a>
 				</c:if>
 
-				<c:forEach begin="${pageMaker.startPage }"
-					end="${pageMaker.endPage }" var="pageNum">
+				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
 					<c:choose>
 						<c:when test="${cri.page == pageNum}">
 							<a style="text-decoration: none; color: red; font-size: 15pt;"
