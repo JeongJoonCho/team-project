@@ -104,8 +104,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 코치 글 구간 -->
-	<form method="post" enctype="multipart/form-data" name="frmCoach"
-		id="coachInfo" action="${contextPath}/modCoach">
+	<form method="post" enctype="multipart/form-data" name="frmCoach" id="coachInfo" action="${contextPath}/modCoach">
 		<section class="py-5">
 			<div class="container main-secction">
 				<div class="row" style="flex-wrap: unset;">
@@ -113,17 +112,14 @@
 					<!-- 좌측 프로필 : coach~proImg / coach~name-->
 					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
 						<div class="row">
-							<div
-								class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
+							<div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
 								style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
 
 								<!-- 프로필 조회 이동 -->
-								<br> <br> <a
-									href="/cocoa/view_profileInfo?profileId=${coach.coach}"> <img
-									name="proImg"
-									src="${contextPath}/downProfileImg?id=${coach.coach}"
-									onerror="this.src='resources/image/onerror.png'"
-									style="border: 1px solid black;" width="50%" height="120px"><br>
+								<br> <br> 
+								<a href="/cocoa/view_profileInfo?profileId=${coach.coach}"> 
+									<img name="proImg" src="${contextPath}/downProfileImg?id=${coach.coach}"
+									onerror="this.src='resources/image/onerror.png'" style="border: 1px solid black;" width="50%" height="120px"><br>
 									<br>
 								</a>
 
@@ -134,30 +130,28 @@
 								<br>
 
 								<!-- 후기 조회 이동 -->
-								<br> <span style="text-align: center;"><a
-									href="/cocoa/view_reviewInfo?target=${coach.coach}"> <input
-										type="button" name="view_reviewInfo" value="후기보기"
-										class="btn btn-third-dark"
+								<br> 
+								<span style="text-align: center;">
+									<a href="/cocoa/view_reviewInfo?target=${coach.coach}"> 
+										<input type="button" name="view_reviewInfo" value="후기보기" class="btn btn-third-dark"
 										style="font-size: 15px; border-radius: 12px; width: 50%;">
-								</a> </span><br> <br>
+									</a> 
+								</span>
+								<br> <br>
 
 								<!-- 요청서 작성 -->
 								<c:if test="${isLogOn == true && member.id !=coach.coach}">
-									<a
-										href="/cocoa/view_reqWriteForm?coachId=${coach.coach}&basicPrice=${coach.basicPrice}">
+									<a href="/cocoa/view_reqWriteForm?coachId=${coach.coach}&basicPrice=${coach.basicPrice}">
 										<input type="button" name="requestForm" value="   요청서 작성   "
-										class="btn btn-third-dark"
-										style="text-align: center; border: 1; border-radius: 12px; width: 70%;">
+										class="btn btn-third-dark" style="text-align: center; border: 1; border-radius: 12px; width: 70%;">
 									</a>
 								</c:if>
 								<br> <br>
 
 								<!-- 본인이면 수정(submit) / 삭제(버튼) 표시 -->
 								<c:if test="${member.id == coach.coach}">
-									<input type="button" class="btn btn-third-dark" value="수정"
-										onClick="fn_enable(frmCoach)" id="c_mod"> &nbsp;
-								<input type="button" class="btn btn-third-dark" value="삭제"
-										onClick="fn_remove_coach(frmCoach)" id="c_rmv">
+									<input type="button" class="btn btn-third-dark" value="수정" onClick="fn_enable(frmCoach)" id="c_mod"> &nbsp;
+									<input type="button" class="btn btn-third-dark" value="삭제" onClick="fn_remove_coach(frmCoach)" id="c_rmv">
 								</c:if>
 								<br> <br>
 							</div>
@@ -165,21 +159,19 @@
 					</div>
 
 					<!-- 우측 내용 : cImg / cTitle / basicPrice / tool / cContents -->
-					<div class="card px-3"
-						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
+					<div class="card px-3" style="width: 50rem; border: 1px solid; background-color: #FFCC99">
 
 						<!-- cImg -->
 						<div align="center">
-							<input type="hidden" name="originalFileName"
-								value="${coach.cImg }" /> <br> <img id="preview"
+							<input type="hidden" name="originalFileName" value="${coach.cImg }" /> <br> <img id="preview"
 								src="${contextPath}/coachImgDownload?coach=${coach.coach }&coachNO=${coach.coachNO}&cImg=${coach.cImg}"
-								width=100% height=300 style="border: 1px solid;"
-								onerror="this.src='resources/image/onerror.png'" /> <br> <br>
+								width=100% height=300 style="border: 1px solid;" onerror="this.src='resources/image/onerror.png'" /> 
+							<br> <br>
 
 							<!-- 수정 누르면 활성화 -->
-							<label class="btn btn-outline-dark" for="c_cImg" id="c_cImgMod">
-								대표 이미지 변경 </label><input type="file" id="c_cImg" name="cImg"
-								onchange="readURL(this);" style="display: none;" /> <br>
+							<label class="btn btn-outline-dark" for="c_cImg" id="c_cImgMod"> 대표 이미지 변경 </label>
+							<input type="file" id="c_cImg" name="cImg" onchange="readURL(this);" style="display: none;" /> 
+							<br>
 						</div>
 
 						<!-- cTitle / basicPrice / tool / cContents 조회 -->
@@ -187,23 +179,19 @@
 
 							<!-- cTitle 표시 -->
 							<hr>
-							<input name="cTitle" type="text" value="${coach.cTitle}"
-								id="c_cTitle" disabled
+							<input name="cTitle" type="text" value="${coach.cTitle}" id="c_cTitle" disabled
 								style="border: 0; text-align: center; width: 100%; background-color: #FFCC99; font-weight: 700; color: black;">
 							<hr>
 
 							<!-- basicPrice 표시 -->
-							요금 : <input name="basicPrice" type="text"
-								value="${coach.basicPrice}" id="c_basicPrice" disabled
+							요금 : <input name="basicPrice" type="text" value="${coach.basicPrice}" id="c_basicPrice" disabled
 								style="border: 0; width: 10%; text-align: center; background-color: #FFCC99; font-weight: 700; color: black;">
 							<b>원</b>
 							<hr>
 
 							<!-- cField 표시 -->
-							영역 : <select
-								style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
-								name="cField" disabled id="cField"
-								onchange="categoryChange(this)">
+							영역 : <select style="border: 0; text-align: center; width: 15%; background-color: #FFCC99; font-weight: 700; color: black;"
+								name="cField" disabled id="cField" onchange="categoryChange(this)">
 								<option id="getcField" value="${coach.cField}">
 									<c:choose>
 										<c:when test="${coach.cField == 'cField1'}">Web</c:when>
@@ -237,16 +225,14 @@
 							<!-- cContents 표시 -->
 							<!-- textarea 닫아주는거 붙여써야함 -->
 							세부 내용 : <br> <br>
-							<textarea name="cContents" rows="10" cols="20" disabled
-								id="c_cContents"
+							<textarea name="cContents" rows="10" cols="20" disabled id="c_cContents"
 								style="border: 1; width: 100%; background-color: #FFCC99; font-weight: 700; color: black; resize: none;">${coach.cContents}</textarea>
 							<hr>
 
 							<div align="center">
-								<input type="submit" onclick="nullCheck()" value="확 인"
-									class="btn btn-outline-dark" id="c_modBtn">&nbsp;&nbsp;<input
-									type=button value="목록으로" class="btn btn-outline-dark"
-									onClick="history.back()" id="goBack"><br> <br>
+								<input type="submit" onclick="nullCheck()" value="확 인" class="btn btn-outline-dark" id="c_modBtn">&nbsp;&nbsp;
+								<input type=button value="목록으로" class="btn btn-outline-dark" onClick="history.back()" id="goBack">
+								<br> <br>
 							</div>
 						</div>
 					</div>
