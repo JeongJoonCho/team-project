@@ -30,7 +30,7 @@
 		<c:choose>
 			<c:when test="${isLogOn == true && member != null}">
 				<div style="font-size: 15px; color: #CFFFE5;">
-					<b>${member.id}님 환영합니다.</b>&nbsp;&nbsp;&nbsp;
+					<b>${member.name}님 환영합니다.</b>&nbsp;&nbsp;&nbsp;
 				</div>
 			</c:when>
 			<c:otherwise>

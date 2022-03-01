@@ -47,8 +47,7 @@
 			<!-- 영역 -->
 			<div class="col-sm-4">
 				<div id="cFields" class="d gap-3">
-					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">영역
-					</div>
+					<div style="color: #CFFFE5; font-size: 25px; text-align: center;">영역</div>
 					<br> 
 					<input id="Web" type="button" class="btn btn-primary btn-lg px-4"
 						onClick="location.href='/cocoa/view_coachCate?cField=cField1'" value="Web"> 
@@ -200,27 +199,34 @@
 								<div class="text-center">
 
 									<!-- 리더 -->
-									<b style="font-size: 15px; float: left; color: grey;">${coach.coach}</b>
-
-									<!-- 후기 개수 (없을시 0개) -->
+									<b style="font-size: 15px; float: left; color: grey;">${coach.coach}</b> 
+									<!-- 평점 평균 , 평점 갯수 (없을시 0.0) -->
 									<a href="/cocoa/view_reviewInfo?target=${coach.coach}">
-										<div style="font-size: 13px; float: right;">
-											<c:if test="${reCount[coach.coach] eq null}">
-												<b>0개의 후기</b>
-											</c:if>
-											<c:if test="${reCount[coach.coach] ne null}">
-												<b>${reCount[coach.coach]}개의 후기</b>
-											</c:if>
-										</div> <!-- 평점 평균 (없을시 0.0) -->
 										<div style="font-size: 13px; float: right;">
 											<c:if test="${reAvg[coach.coach] eq null}">
 												<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
 													★&nbsp;</b>
-												<b>0.0</b>&nbsp;|&nbsp;</c:if>
+												<b>0.0</b>&nbsp;|&nbsp;
+												<!-- 평점 갯수 -->
+												<c:if test="${reCount[coach.coach] eq null}">
+													<b>0개의 후기</b>
+												</c:if>
+												<c:if test="${reCount[coach.coach] ne null}">
+													<b>${reCount[coach.coach]}개의 후기</b>
+												</c:if>
+											</c:if>
 											<c:if test="${reAvg[coach.coach] ne null}">
 												<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
 													★&nbsp;</b>
-												<b>${reAvg[coach.coach]}</b>&nbsp;|&nbsp;</c:if>
+												<b>${reAvg[coach.coach]}</b>&nbsp;|&nbsp;
+												<!-- 평점 갯수 -->
+												<c:if test="${reCount[coach.coach] eq null}">
+													<b>0개의 후기</b>
+												</c:if>
+												<c:if test="${reCount[coach.coach] ne null}">
+													<b>${reCount[coach.coach]}개의 후기</b>
+												</c:if>
+											</c:if>
 										</div>
 									</a> <br> <br>
 

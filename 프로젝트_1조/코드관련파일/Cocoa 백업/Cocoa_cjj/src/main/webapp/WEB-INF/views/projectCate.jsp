@@ -177,36 +177,43 @@
 								<div class="text-center">
 
 									<!-- 리더 -->
-									<b style="font-size: 15px; float: left; color: grey;">${project.leader}</b>
-
-									<!-- 후기 개수 (없을시 0개) -->
+									<b style="font-size: 15px; float: left; color: grey;">${project.leader}</b> 
+									<!-- 평점 평균 , 평점 갯수 (없을시 0.0) -->
 									<a href="/cocoa/view_reviewInfo?target=${project.leader}">
-										<div style="font-size: 13px; float: right;">
+									<div style="font-size: 13px; float: right;">
+										<c:if test="${reAvg[project.leader] eq null}">
+											<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+												★&nbsp;</b>
+											<b>0.0</b>&nbsp;|&nbsp;
+											<!-- 평점 갯수 -->
 											<c:if test="${reCount[project.leader] eq null}">
 												<b>0개의 후기</b>
 											</c:if>
 											<c:if test="${reCount[project.leader] ne null}">
 												<b>${reCount[project.leader]}개의 후기</b>
 											</c:if>
-										</div> <!-- 평점 평균 (없을시 0.0) -->
-										<div style="font-size: 13px; float: right;">
-											<c:if test="${reAvg[project.leader] eq null}">
-												<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
-													★&nbsp;</b>
-												<b>0.0</b>&nbsp;|&nbsp;</c:if>
-											<c:if test="${reAvg[project.leader] ne null}">
-												<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
-													★&nbsp;</b>
-												<b>${reAvg[project.leader]}</b>&nbsp;|&nbsp;</c:if>
-										</div>
-									</a> <br> <br>
+										</c:if>
+										<c:if test="${reAvg[project.leader] ne null}">
+											<b style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: yellow;">
+												★&nbsp;</b>
+											<b>${reAvg[project.leader]}</b>&nbsp;|&nbsp;
+											<!-- 평점 갯수 -->
+											<c:if test="${reCount[project.leader] eq null}">
+												<b>0개의 후기</b>
+											</c:if>
+											<c:if test="${reCount[project.leader] ne null}">
+												<b>${reCount[project.leader]}개의 후기</b>
+											</c:if>
+										</c:if>
+									</div>
+								</a> <br> <br>
 
-									<!-- 제목 -->
-									<b style="font-size: 15px; color: black;">${project.pTitle}</b><br>
-									<br>
+								<!-- 제목 -->
+								<b style="font-size: 15px; color: black;">${project.pTitle}</b><br>
+								<br>
 
-									<!-- 인원수 -->
-									<b style="font-size: 15px; color: #333333; float: right;">${project.memberCount}명 모집중</b>
+								<!-- 인원수 -->
+								<b style="font-size: 15px; color: #333333; float: right;">${project.memberCount}명 모집중</b>
 								</div>
 							</div>
 
