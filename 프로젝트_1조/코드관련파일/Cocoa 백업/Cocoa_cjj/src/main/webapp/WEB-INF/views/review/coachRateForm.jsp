@@ -27,8 +27,7 @@
 
 		<!-- 좌측 메뉴 -->
 		<div class="col-sm-2">
-			<div class="side"
-				style="background-color: #333333; text-align: center;">
+			<div class="side" style="background-color: #333333; text-align: center;">
 				<jsp:include page="../myPage/side.jsp"></jsp:include>
 			</div>
 		</div>

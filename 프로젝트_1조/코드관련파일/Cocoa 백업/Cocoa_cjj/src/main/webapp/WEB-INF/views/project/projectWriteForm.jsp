@@ -97,8 +97,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 
 	<!-- 프로젝트 글 작성 -->
-	<form action="${contextPath}/projectWrite" method="post"
-		id="projectWrite" enctype="multipart/form-data">
+	<form action="${contextPath}/projectWrite" method="post" id="projectWrite" enctype="multipart/form-data">
 		<section class="py-5">
 			<div class="container main-secction">
 				<div class="row" style="flex-wrap: unset;">
@@ -106,42 +105,41 @@
 					<!-- 좌측 프로필 : leader~proImg / leader~name -->
 					<div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
 						<div class="row">
-							<div
-								class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
+							<div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"
 								style="width: 80%; height: 100%; border: 2px solid; background-color: #FFCCCC;">
 
 								<!-- 프로필 조회 이동 -->
-								<br> <br> <img name="proImg"
-									src="${contextPath}/downProfileImg?id=${member.id}"
+								<br> <br> 
+								<img name="proImg" src="${contextPath}/downProfileImg?id=${member.id}"
 									style="border: 1px solid;" width="50%" height="120px"
-									onerror="this.src='resources/image/onerror.png'"><br>
-								<br>
+									onerror="this.src='resources/image/onerror.png'">
+								<br> <br>
 
 								<!-- leader -->
 								<input type="text" name="leader" value="${member.id}" readonly
-									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;"><br>
-								<br>
+									style="text-align: center; border: 0; font-weight: 700; background-color: #FFCCCC; width: 70%;">
+								<br> <br>
 
 								<!-- kakao -->
-								<b>카카오톡 오픈채팅 :</b><br> <br> <input type="text"
-									name="kakao" placeholder="링크 입력" id="kakao"
-									style="text-align: center; border: 1; background-color: #FFCCCC; width: 80%;"><br>
-								<br>
+								<b>카카오톡 오픈채팅 :</b>
+								<br> <br> 
+								<input type="text" name="kakao" placeholder="링크 입력" id="kakao"
+									style="text-align: center; border: 1; background-color: #FFCCCC; width: 80%;">
+								<br> <br>
 							</div>
 						</div>
 					</div>
 
 					<!-- 우측 내용 : pImg / pTitle / memberCount / pContents -->
-					<div class="card px-3"
-						style="width: 50rem; border: 1px solid; background-color: #FFCC99">
+					<div class="card px-3" style="width: 50rem; border: 1px solid; background-color: #FFCC99">
 
 						<!-- pImg -->
 						<div align="center">
-							<br> <img id="preview" src="resources/image/onerror.png"
-								width=100% height=300 style="border: 1px solid;" /><br> <br>
-							<label class="btn btn-outline-dark" for="pImg"> 대표 이미지 변경
-							</label><input type="file" id="pImg" name="pImg"
-								onchange="readURL(this);" style="display: none;" />
+							<br> 
+							<img id="preview" src="resources/image/onerror.png" width=100% height=300 style="border: 1px solid;" />
+							<br> <br>
+							<label class="btn btn-outline-dark" for="pImg"> 대표 이미지 변경 </label>
+							<input type="file" id="pImg" name="pImg" onchange="readURL(this);" style="display: none;" />
 						</div>
 
 						<!-- pTitle / memberCount / pContents 입력 -->
@@ -159,8 +157,7 @@
 							<hr>
 
 							<!-- pField 선택 -->
-							분야 : <select style="text-align: center; width: 30%;" id="pField"
-								name="pField">
+							분야 : <select style="text-align: center; width: 30%;" id="pField" name="pField">
 								<option id="empty">-- 선택 --</option>
 								<option id="pField1" value="pField1">Web</option>
 								<option id="pField2" value="pField2">Mobile App</option>
@@ -169,8 +166,7 @@
 							<hr>
 
 							<!-- level 선택 -->
-							난이도 : <select style="text-align: center; width: 30%;" id="level"
-								name="level">
+							난이도 : <select style="text-align: center; width: 30%;" id="level" name="level">
 								<option id="empty">-- 선택 --</option>
 								<option id="level1" value="level1">Basic</option>
 								<option id="level2" value="level2">Intermediate</option>
@@ -188,7 +184,8 @@
 
 							&nbsp;모임 장소 : <input type="text" name="map" id="addr" size="35"
 								placeholder='장소를 입력해주세요.'> <input type="button"
-								name="send" id="sendMark" value="검색"><br> <br>
+								name="send" id="sendMark" value="검색">
+							<br> <br>
 							<div id="map" style="width: 100%; height: 400px;"></div>
 							<hr>
 
@@ -196,10 +193,9 @@
 
 						<!-- 작성(submit) + 취소(버튼) -->
 						<div class="card-body" style="text-align: center">
-							<button type="submit" class="btn btn-outline-dark"
-								onclick="nullCheck()">작성</button>
-							&nbsp; <a href="/cocoa/view_projectCate"
-								class="btn btn-outline-dark">취소</a>
+							<button type="submit" class="btn btn-outline-dark" onclick="nullCheck()">작성</button>
+							&nbsp; 
+							<a href="/cocoa/view_projectCate" class="btn btn-outline-dark">취소</a>
 						</div>
 					</div>
 

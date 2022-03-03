@@ -29,30 +29,25 @@ request.setCharacterEncoding("UTF-8");
 			<table class="table table-striped table-sm">
 				<thead>
 					<tr>
-						<th colspan="4" style="text-align: center;"><b>${member.id}님이
-								보낸 요청 리스트</b></th>
+						<th colspan="4" style="text-align: center;">
+							<b>${member.id}님이 보낸 요청 리스트</b>
+						</th>
 					</tr>
 					<tr>
 						<td colspan="4" style="align: right;">
-							<!-- 조건 조회 버튼 --> <select class="me-sm-3"
-							style="float: right; text-align: center; width: 20%;"
-							id="requestStatus" onchange="selChange()">
+							<!-- 조건 조회 버튼 --> 
+							<select class="me-sm-3" style="float: right; text-align: center; width: 20%;" id="requestStatus" onchange="selChange()">
 								<option value="status"
-									<c:if test="${cri.status == 'status' }">selected</c:if>>전체
-									요청글</option>
+									<c:if test="${cri.status == 'status' }">selected</c:if>>전체 요청글</option>
 								<option value="status1"
-									<c:if test="${cri.status == 'status1' }">selected</c:if>>대기중인
-									요청</option>
+									<c:if test="${cri.status == 'status1' }">selected</c:if>>대기중인 요청</option>
 								<option value="status2"
-									<c:if test="${cri.status == 'status2' }">selected</c:if>>수락된
-									요청</option>
+									<c:if test="${cri.status == 'status2' }">selected</c:if>>수락된 요청</option>
 								<option value="status3"
-									<c:if test="${cri.status == 'status3' }">selected</c:if>>거절된
-									요청</option>
+									<c:if test="${cri.status == 'status3' }">selected</c:if>>거절된 요청</option>
 								<option value="status4"
-									<c:if test="${cri.status == 'status4' }">selected</c:if>>코칭
-									완료된 요청</option>
-						</select>
+									<c:if test="${cri.status == 'status4' }">selected</c:if>>코칭 완료된 요청</option>
+							</select>
 
 						</td>
 					</tr>
@@ -69,45 +64,47 @@ request.setCharacterEncoding("UTF-8");
 						<tr>
 							<td>${sentList.res }</td>
 							<!-- sentReqWait로 이동 -->
-							<td style="text-align: left;"><a
-								style="text-decoration-line: none; color: dark; font-weight: 700;"
-								href="${contextPath}/view_sentReqWait?reqNO=${sentList.reqNO}">${sentList.rTitle }</a></td>
-							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss"
-								value="${sentList.rDate}" />
-							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd"
-								value="${dateFmt}" />
+							<td style="text-align: left;">
+								<a style="text-decoration-line: none; color: dark; font-weight: 700;"
+								href="${contextPath}/view_sentReqWait?reqNO=${sentList.reqNO}">${sentList.rTitle }</a>
+							</td>
+							<fmt:parseDate var="dateFmt" pattern="yyyy-MM-dd HH:mm:ss" value="${sentList.rDate}" />
+							<fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd" value="${dateFmt}" />
 							<td>${dateTempParse}</td>
-							<td><c:choose>
+							<td>
+								<c:choose>
 									<c:when test="${sentList.status == 'status1'}">대기</c:when>
 									<c:when test="${sentList.status == 'status2'}">수락</c:when>
 									<c:when test="${sentList.status == 'status3'}">거절</c:when>
 									<c:when test="${sentList.status == 'status4'}">완료</c:when>
-								</c:choose></td>
+								</c:choose>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 				<tr>
-					<td colspan="4" style="text-align: center;"><c:if
-							test="${pageMaker.prev }">
+					<td colspan="4" style="text-align: center;">
+						<c:if test="${pageMaker.prev }">
 							<a style="text-decoration: none; color: black; font-size: 15pt;"
 								href='<c:url value="/view_sendReq?status=${cri.status }&page=${pageMaker.startPage-1 }"/>'>이전</a>
-						</c:if> <c:forEach begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }" var="pageNum">
+						</c:if> 
+						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
 							<c:choose>
 								<c:when test="${cri.page == pageNum}">
 									<a style="text-decoration: none; color: red; font-size: 15pt;"
 										href='<c:url value="/view_sendReq?status=${cri.status }&page=${pageNum }"/>'>${pageNum }</a>
 								</c:when>
 								<c:when test="${cri.page != pageNum}">
-									<a
-										style="text-decoration: none; color: black; font-size: 15pt;"
+									<a style="text-decoration: none; color: black; font-size: 15pt;"
 										href='<c:url value="/view_sendReq?status=${cri.status }&page=${pageNum }"/>'>${pageNum }</a>
 								</c:when>
 							</c:choose>
-						</c:forEach> <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+						</c:forEach> 
+						<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 							<a style="text-decoration: none; color: black; font-size: 15pt;"
 								href='<c:url value="/view_sendReq?status=${cri.status }&page=${pageMaker.endPage+1 }"/>'>다음</a>
-						</c:if></td>
+						</c:if>
+					</td>
 				</tr>
 			</table>
 		</div>
