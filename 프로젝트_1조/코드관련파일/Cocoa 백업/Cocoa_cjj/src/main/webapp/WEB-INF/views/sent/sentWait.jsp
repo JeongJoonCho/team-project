@@ -9,10 +9,10 @@
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
 <style type="text/css">
-th, td {
-	padding: 6px;
-	color: black;
-}
+	th, td {
+		padding: 6px;
+		color: black;
+	}
 </style>
 <script type="text/javascript">
 	function readURL(input) {
@@ -27,47 +27,42 @@ th, td {
 		}
 	}
 
-	$(document)
-			.ready(
-					function() {
-						$('#mod_finish').hide();
-						$('#cancel').hide();
-						$('#findImg').hide();
-						$('#space').hide();
-
-						$('#mod_start').click(function() {
-							$('#space').show();
-							$('#del').hide();
-							$('#mod_start').hide();
-							$('#to_list').hide();
-							$('#findImg').show();
-							$('#mod_finish').show();
-							$('#cancel').show();
-							$('#rTitle').prop('disabled', false);
-							$('#rContents').prop('disabled', false);
-							return false;
-						});
-
-						$('#cancel')
-								.click(
-										function() {
-											$('#space').hide();
-											$('#del').show();
-											$('#mod_start').show();
-											$('#to_list').show();
-											$('#findImg').hide();
-											$('#mod_finish').hide();
-											$('#cancel').hide();
-											$('#rTitle').prop('disabled', true);
-											$('#rContents').prop('disabled',
-													true);
-											$('#preview')
-													.attr('src',
-															'${contextPath}/downRImg?reqNO=${requestInfo.reqNO}');
-											return false;
-										});
-
-					});
+	$(document).ready(
+		function() {
+			$('#mod_finish').hide();
+			$('#cancel').hide();
+			$('#findImg').hide();
+			$('#space').hide();
+	
+			$('#mod_start').click(function() {
+				$('#space').show();
+				$('#del').hide();
+				$('#mod_start').hide();
+				$('#to_list').hide();
+				$('#findImg').show();
+				$('#mod_finish').show();
+				$('#cancel').show();
+				$('#rTitle').prop('disabled', false);
+				$('#rContents').prop('disabled', false);
+				return false;
+			});
+	
+			$('#cancel').click(
+				function() {
+					$('#space').hide();
+					$('#del').show();
+					$('#mod_start').show();
+					$('#to_list').show();
+					$('#findImg').hide();
+					$('#mod_finish').hide();
+					$('#cancel').hide();
+					$('#rTitle').prop('disabled', true);
+					$('#rContents').prop('disabled', true);
+					$('#preview').attr('src', '${contextPath}/downRImg?reqNO=${requestInfo.reqNO}');
+					return false;
+				});
+	
+		});
 
 	function yesOrNo() {
 		if (confirm("철회하시겠습니까?")) {

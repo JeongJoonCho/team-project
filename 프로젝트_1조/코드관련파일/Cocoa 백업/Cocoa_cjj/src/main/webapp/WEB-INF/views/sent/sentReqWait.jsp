@@ -34,8 +34,7 @@
 	<div class="row" style="flex-wrap: unset; width: 80%;">
 
 		<!-- 좌측 메뉴 -->
-		<div class="col-sm-2 side"
-			style="background-color: #333333; text-align: center; width: auto;">
+		<div class="col-sm-2 side" style="background-color: #333333; text-align: center; width: auto;">
 			<jsp:include page="../myPage/side.jsp"></jsp:include>
 		</div>
 
