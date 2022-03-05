@@ -163,7 +163,9 @@
 
 						<!-- cImg -->
 						<div align="center">
-							<input type="hidden" name="originalFileName" value="${coach.cImg }" /> <br> <img id="preview"
+							<input type="hidden" name="originalFileName" value="${coach.cImg }" /> 
+							<br> 
+							<img id="preview"
 								src="${contextPath}/coachImgDownload?coach=${coach.coach }&coachNO=${coach.coachNO}&cImg=${coach.cImg}"
 								width=100% height=300 style="border: 1px solid;" onerror="this.src='resources/image/onerror.png'" /> 
 							<br> <br>
