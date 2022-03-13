@@ -84,6 +84,7 @@ public class MemberControllerImpl implements MemberController {
 	@RequestMapping(value = "/view_myPageProfile", method = RequestMethod.GET)
 	public ModelAndView view_myPageProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
+		// session에 저장된 로그인한 아이디 정보 불러오기
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("member");
 		String id = vo.getId();

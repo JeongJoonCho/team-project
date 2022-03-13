@@ -76,10 +76,10 @@
 
 	<!-- 코치 글 삭제 -->
 	<delete id="deleteCoach" parameterType="int">
-    <![CDATA[
-      delete from coachingTBL
-      where coachNO = #{coachNO}
-    ]]>
+	    <![CDATA[
+	      delete from coachingTBL
+	      where coachNO = #{coachNO}
+	    ]]>
 	</delete>
 
 	<!-- 코칭 글의 수 -->
