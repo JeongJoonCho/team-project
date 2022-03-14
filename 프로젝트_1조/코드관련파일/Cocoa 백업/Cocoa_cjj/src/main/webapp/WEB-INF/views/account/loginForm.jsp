@@ -10,22 +10,8 @@
 <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
 <link href="resources/css/login-styles.css" rel="stylesheet" />
 <script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	function nullCheck() {
-		var _id = $("#id").val();
-		var _pwd = $("#pwd").val().replace(/\s/g, "");
+<script type="text/javascript" src="resources/js/ajax.js?ver=2"></script>
 
-		if (_id == "") {
-			alert("아이디를 입력하세요");
-			$('#login').attr('onSubmit', "return false;");
-		} else if (_pwd == "") {
-			alert("비밀번호를 입력하세요");
-			$('#login').attr('onSubmit', "return false;");
-		} else {
-			$('#login').removeAttr('onSubmit');
-		}
-	}
-</script>
 <!-- 로그인 실패시 알림 -->
 <c:choose>
 	<c:when test="${result == 'loginFailed'}">

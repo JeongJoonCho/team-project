@@ -1,7 +1,24 @@
 /**
  * 
  */
+ 	function nullCheck() {
+			var _id = $("#id").val();
+			var _pwd = $("#pwd").val().replace(/\s/g, "");
+			// 로그인시 입력을 안하면 입력하도록 alert 뜨도록
+			// 회원 탈퇴시 회원정보 삭제 후 비밀번호 없이 아이디로만 새로 만들기 때문에 비밀번호 없이 로그인 시도하면 alert 뜨게 함
+			if (_id == "") {
+				alert("아이디를 입력하세요");
+				$('#login').attr('onSubmit', "return false;");
+			} else if (_pwd == "") {
+				alert("비밀번호를 입력하세요");
+				$('#login').attr('onSubmit', "return false;");
+			} else {
+				$('#login').removeAttr('onSubmit');
+			}
+	}
 	$(document).ready(function() {
+		
+		
 		$('#validate').click(function() {
 		
 			var flag = false;
@@ -71,6 +88,8 @@
 	            }
 	        }
 	    });
+		
+		
 		
 		$('#idCheck').click(function(){
 			var _id = $("#id").val();
