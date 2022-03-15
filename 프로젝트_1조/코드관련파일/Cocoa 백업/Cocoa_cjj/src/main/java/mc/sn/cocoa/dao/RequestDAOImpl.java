@@ -17,7 +17,8 @@ public class RequestDAOImpl implements RequestDAO {
 	private SqlSession sqlSession;
 
 	// 요청글 넘버링
-	private int selectNewProjectNO() {
+	// 현재 db에 있는 요청글의 넘버 최대치에 +1해서 리턴
+	private int selectNewReqNO() {
 		return sqlSession.selectOne("mapper.request.selectNewReqNO");
 	}
 
@@ -25,7 +26,7 @@ public class RequestDAOImpl implements RequestDAO {
 	// reqNO를 리턴
 	@Override
 	public int insertRequest(Map reqMap) {
-		int reqNO = this.selectNewProjectNO();
+		int reqNO = this.selectNewReqNO();
 		reqMap.put("reqNO", reqNO);
 		sqlSession.insert("mapper.request.insertRequest", reqMap);
 		return reqNO;

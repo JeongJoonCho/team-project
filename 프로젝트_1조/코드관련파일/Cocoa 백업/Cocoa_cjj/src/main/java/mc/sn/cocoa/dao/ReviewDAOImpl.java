@@ -15,6 +15,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	private SqlSession sqlSession;
 
 	// 리뷰 넘버링
+	// 현재 db에 있는 리뷰글의 넘버 최대치에 +1해서 리턴
 	private int selectNewReviewNO() {
 		return sqlSession.selectOne("mapper.review.selectNewReviewNO");
 	}
@@ -22,6 +23,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	// 리뷰 등록
 	@Override
 	public int insertReview(ReviewVO reviewVO) {
+		// selectNewReviewNo를 호출해서 reviewNO를 reviewVO에 추가
 		int reviewNO = selectNewReviewNO();
 		reviewVO.setReviewNO(reviewNO);
 		return sqlSession.insert("mapper.review.insertReview", reviewVO);

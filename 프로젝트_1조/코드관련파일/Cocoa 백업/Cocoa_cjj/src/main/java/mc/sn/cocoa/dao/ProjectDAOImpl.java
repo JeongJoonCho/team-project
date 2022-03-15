@@ -19,6 +19,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	// 새 프로젝트 글 삽입
 	@Override
 	public int insertNewProject(Map projectMap) {
+		// selectNewProjectNo를 호출해서 projectNO를 projectMap에 추가
 		int projectNO = this.selectNewProjectNO();
 		projectMap.put("projectNO", projectNO);
 		sqlSession.insert("mapper.project.insertNewProject", projectMap);
@@ -26,6 +27,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	}
 
 	// 프로젝트 글 넘버링
+	// 현재 db에 있는 프로젝트 글의 넘버 최대치에 +1해서 리턴
 	private int selectNewProjectNO() {
 		return sqlSession.selectOne("mapper.project.selectNewProjectNO");
 	}

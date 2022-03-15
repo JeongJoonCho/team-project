@@ -19,6 +19,7 @@ public class CoachDAOImpl implements CoachDAO {
 	// 새 코칭 글 삽입
 	@Override
 	public int insertNewCoach(Map coachMap) {
+		// selectNewCoachNo를 호출해서 coachNO를 coachMap에 추가
 		int coachNO = this.selectNewCoachNO();
 		coachMap.put("coachNO", coachNO);
 		sqlSession.insert("mapper.coach.insertNewCoach", coachMap);
@@ -26,6 +27,7 @@ public class CoachDAOImpl implements CoachDAO {
 	}
 
 	// 코칭 글 넘버링
+	// 현재 db에 있는 코치 글의 넘버 최대치에 +1해서 리턴
 	private int selectNewCoachNO() {
 		return sqlSession.selectOne("mapper.coach.selectNewCoachNO");
 	}
